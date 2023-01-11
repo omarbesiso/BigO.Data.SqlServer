@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Scripts", "SQL Scripts"
 		SQL Scripts\GetTableSizes.sql = SQL Scripts\GetTableSizes.sql
 		SQL Scripts\RebuildIndexes.sql = SQL Scripts\RebuildIndexes.sql
 		SQL Scripts\SQL Server Properties.sql = SQL Scripts\SQL Server Properties.sql
+		SQL Scripts\ViewColumns.sql = SQL Scripts\ViewColumns.sql
 	EndProjectSection
 EndProject
 Global
