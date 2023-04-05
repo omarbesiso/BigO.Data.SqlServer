@@ -65,7 +65,7 @@ public static class SqlConnectionExtensions
     ///     Opens the <paramref name="connection" /> if it is not already open.
     /// </summary>
     /// <param name="connection">The <see cref="SqlConnection" /> object to open. Cannot be <c>null</c>.</param>
-    /// <returns><c>true</c> si the connection was not open and was open; otherwise <c>false</c>.</returns>
+    /// <returns><c>true</c> if the connection was not open and was open; otherwise <c>false</c>.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="connection" /> is <c>null</c>.</exception>
     /// <exception cref="SqlException">Thrown when there is an error opening the connection.</exception>
     /// <remarks>This method is a convenience wrapper around the <see cref="SqlConnection.Open()" /> method.</remarks>
