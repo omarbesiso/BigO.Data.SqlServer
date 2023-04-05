@@ -20,7 +20,7 @@ public static class SqlDbTypeExtensions
     /// </param>
     /// <returns>The System.Type value that corresponds to the specified SqlDbType value.</returns>
     /// <exception cref="NotSupportedException">Thrown when the conversion is not supported.</exception>
-    public static Type GetDotNetType(this SqlDbType sqlDbType, bool nullableType = false)
+    public static Type AsDotNetType(this SqlDbType sqlDbType, bool nullableType = false)
     {
         var meta = MetaType.GetMetaTypeFromSqlDbType(sqlDbType);
         var type = nullableType ? meta.NullableDotNetType : meta.DotNetType;
@@ -33,7 +33,7 @@ public static class SqlDbTypeExtensions
     /// <param name="sqlDbType">The SqlDbType value to be converted.</param>
     /// <returns>The DbType value that corresponds to the specified SqlDbType value.</returns>
     /// <exception cref="NotSupportedException">Thrown when the conversion is not supported.</exception>
-    public static DbType GetDbType(this SqlDbType sqlDbType)
+    public static DbType AsDbType(this SqlDbType sqlDbType)
     {
         var meta = MetaType.GetMetaTypeFromSqlDbType(sqlDbType);
         return meta.DbType;
