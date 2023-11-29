@@ -1,42 +1,26 @@
 ﻿using System.Data;
 using BigO.Core.Extensions;
 using BigO.Data.SqlServer.Extensions;
+using JetBrains.Annotations;
 
 // ReSharper disable InconsistentNaming
 
 namespace BigO.Data.SqlServer.Internals;
 
-internal struct MetaType
+[PublicAPI]
+internal struct MetaType(SqlDbType sqlDbType, DbType dbType, Type dotNetType, Type NullableType)
 {
-    public bool IsAnsiType;
-    public bool IsBinType;
-    public bool IsCharType;
-    public bool IsNCharType;
+    public bool IsAnsiType = sqlDbType.IsAnsiType();
+    public bool IsBinType = sqlDbType.IsBinaryType();
+    public bool IsCharType = sqlDbType.IsCharType();
+    public bool IsNCharType = sqlDbType.IsNCharType();
 
-    public MetaType(SqlDbType sqlDbType, DbType dbType, Type dotNetType, Type NullableType)
-    {
-        DotNetType = dotNetType;
-        NullableDotNetType = NullableType;
-
-        DotNetTypeString = dotNetType.GetTypeAsString();
-
-        RequiresLength = RequiresLengthInternal(sqlDbType);
-
-        SqlDbType = sqlDbType;
-        DbType = dbType;
-
-        IsAnsiType = sqlDbType.IsAnsiType();
-        IsBinType = sqlDbType.IsBinaryType();
-        IsCharType = sqlDbType.IsCharType();
-        IsNCharType = sqlDbType.IsNCharType();
-    }
-
-    public Type DotNetType { get; set; }
-    public Type NullableDotNetType { get; set; }
-    public SqlDbType SqlDbType { get; set; }
-    public DbType DbType { get; set; }
-    public string DotNetTypeString { get; set; }
-    public bool RequiresLength { get; set; }
+    public Type DotNetType { get; set; } = dotNetType;
+    public Type NullableDotNetType { get; set; } = NullableType;
+    public SqlDbType SqlDbType { get; set; } = sqlDbType;
+    public DbType DbType { get; set; } = dbType;
+    public string DotNetTypeString { get; set; } = dotNetType.GetTypeAsString();
+    public bool RequiresLength { get; set; } = RequiresLengthInternal(sqlDbType);
 
 
     internal static readonly MetaType MetaBigInt = new(SqlDbType.BigInt, DbType.Int64, typeof(long), typeof(long?));

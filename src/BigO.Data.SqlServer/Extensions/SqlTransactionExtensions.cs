@@ -27,7 +27,7 @@ public static class SqlTransactionExtensions
         IEnumerable<SqlParameter>? parameters = null, CommandType commandType = CommandType.StoredProcedure,
         int commandTimeout = 30)
     {
-        return SqlCommandFactory.CreateSqlCommand(sqlTransaction, commandText, parameters, commandType,
-            commandTimeout);
+        return SqlCommandFactory.CreateSqlCommand(sqlTransaction,
+            commandText, parameters, commandType, commandTimeout);
     }
 }
